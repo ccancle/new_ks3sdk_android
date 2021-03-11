@@ -1,9 +1,9 @@
-#*此仓库 version>=1.4.3， 若使用1.4.3之前的版本，请移步 
+# 此仓库 version>=1.4.3， 若使用1.4.3之前的版本，请移步 
 
 * [KS3 SDK for Android](https://github.com/ks3sdk/ks3-android-sdk)
 
 
-#KS3 SDK for Android使用指南
+# KS3 SDK for Android使用指南
 ---
 
 ##开发前准备
@@ -25,7 +25,7 @@ dependencies {
 }
 ```
 
-###SDK使用准备
+### SDK使用准备
 
 - 申请AccessKeyID、AccessKeySecret
 - Android权限申明
@@ -38,20 +38,20 @@ dependencies {
 
 ```
 
-###SDK配置
+### SDK配置
 SDK以jar包形式呈现。将releases文件夹下*ks3-android-sdk-1.4.8.jar*，以及依赖库文件，放入工程libs文件下。
 
 也可以下载源码，以Library库形式添加。
 
 > 更多KS3介绍文档，请参考[文档中心:](http://ks3.ksyun.com/doc/index.html)
 
-###运行环境
+### 运行环境
 
 
 *minSdkVersion 9
 
 
-###补充说明
+### 补充说明
 **线程安全:** 考虑到Android 4.0之后不再允许主线程内进行网络请求，以及UI操作必须在主线程中进行。ks3-android-sdk所提供的API，默认让开发者在主线程进行调用，且会以异步方式进行请求，请求回调方法仍将执行在主线程。
 
 如果开发者需要用同步方式进行API调用（即在自己开的线程内,调用同步API请求），需要调用以下方法，以确保API以同步方式进行。
@@ -62,9 +62,9 @@ SDK以jar包形式呈现。将releases文件夹下*ks3-android-sdk-1.4.8.jar*，
 ~~~
 
 
-##安全性
+## 安全性
 
-###使用场景
+### 使用场景
 由于在App端明文存储AccessKeyID、AccessKeySecret是极不安全的，因此推荐的使用场景如下图所示：
 
 ![](http://androidsdktest21.kssws.ks-cdn.com/ks3-android-sdk-authlistener.png)
@@ -170,13 +170,13 @@ public void setCallBack(String callBackUrl, String callBackBody, Map<String, Str
 
 ```
 
-###Ks3Client初始化
+### Ks3Client初始化
 Ks3Client初始化包含以下两种：
 
 - 直接利用AccessKeyID、AccessKeySecret初始化（***不安全,仅建议测试时使用***）
 - 实现授权回调（AuthListener）获取Token（签名），即由客户app端向客户业务服务器发送带签名参数的请求，业务服务器实现签名算法并返回Token（签名），SDK及对应Demo中的**AuthUtils**类提供了该算法的Java实现。之后SDK会将onCalculateAuth（）方法返回的Token（签名）带入所有请求，用户正常调用SDK提供的API即可（***推荐使用***）
 
-###请求签名
+### 请求签名
 方法: 在请求中加入名为 Authorization 的 Header，值为签名值。形如：
 Authorization: KSS P3UPCMORAFON76Q6RTNQ:vU9XqPLcXd3nWdlfLWIhruZrLAM=
 
@@ -249,14 +249,14 @@ onCalculateAuth（）回调方法参数说明：
 
 ```
 
-##SDK介绍及使用
-###核心类介绍
+## SDK介绍及使用
+### 核心类介绍
 
 - Ks3Client 封装接入Web Service的一系列操作，提供更加便利的接口以及回调
 - Ks3ClientConfiguration 配置Ks3Client参数，包括代理设置，请求超时时长以及重试次数等
 - AuthUtils 包含授权算法的工具类
 
-###资源管理操作
+### 资源管理操作
 
 * [List Buckets](#list-buckets) 列出客户所有的Bucket信息
 * [Create Bucket](#create-bucket) 创建一个新的Bucket
@@ -288,9 +288,9 @@ onCalculateAuth（）回调方法参数说明：
 * [Multipart Upload Example Code](#multipart-upload-example-code) 分片上传代码示例
 * [音视频使用示例](#音视频使用示例) 代码示例
 
-###Service操作
+### Service操作
 
-####List Buckets：
+#### List Buckets：
 
 *列出客户所有的 Bucket 信息*
 
@@ -367,9 +367,9 @@ public void listBuckets(ListBucketsRequest request,ListBucketsResponceHandler re
 		);
 ```
 
-###Bucket操作
+### Bucket操作
 
-####Create Bucket： 
+#### Create Bucket： 
 
 *创建一个新的Bucket*
 
@@ -533,7 +533,7 @@ public void createBucket(CreateBucketRequest request,CreateBucketResponceHandler
 		);
 ```
 
-####Delete Bucket:
+#### Delete Bucket:
 
 *删除指定Bucket*
 
@@ -611,7 +611,7 @@ public void deleteBucket(DeleteBucketRequest request,DeleteBucketResponceHandler
 		);
 ```
 
-####Get Bucket ACL:
+#### Get Bucket ACL:
 
 *获取Bucket的ACL*
 
@@ -685,7 +685,7 @@ public void getBucketACL(GetBucketACLRequest request ,GetBucketACLResponceHandle
 		);
 ```
 
-####Put Bucket ACL:
+#### Put Bucket ACL:
 
 *设置Bucket的ACL，以AccessControlList形式*
 
@@ -802,7 +802,7 @@ public void putBucketACL(PutBucketACLRequest requset,PutBucketACLResponseHandler
 
 ```
 
-####Head Bucket：
+#### Head Bucket：
 
 *查询是否已经存在指定Bucket*
 
@@ -883,9 +883,9 @@ public void headBucket(HeadBucketRequest request,HeadBucketResponseHandler resul
 ```
 
 
-#put-bucket-crr
+# put-bucket-crr
 
-####Put Bucket CRR：
+#### Put Bucket CRR：
 
 *设置跨区域规则
 
@@ -930,7 +930,7 @@ public void putBucketCrr(String bucketname,PutBucketReplicationResponceHandler r
 
 #get-bucket-crr
 
-####Get Bucket CRR：
+#### Get Bucket CRR：
 
 **方法名：** 
 
@@ -1136,7 +1136,7 @@ public void putBucketPolicy(PutBuckePolicyRequest request,Ks3HttpResponceHandler
 
 #get-bucket-policy
 
-####Get Bucket POLICY：
+#### Get Bucket POLICY：
 
 **方法名：** 
 
@@ -1173,7 +1173,7 @@ public void getBucketPolicy(GetBucketPolicyRequest request,GetBucketPolicyRespon
 
 #delete-bucket-policy
 
-####Delete Bucket POLICY：
+#### Delete Bucket POLICY：
 
 **方法名：** 
 
@@ -1209,8 +1209,9 @@ public void deleteBucketPolicy(DeleteBucketPolicyRequest request,Ks3HttpResponce
         });
 ```
 
-###Object操作
-####Get Object：
+### Object操作
+
+Get Object：
 
 *下载该Object数据*  
 **方法名：** 
@@ -1330,7 +1331,7 @@ public Ks3HttpRequest getObject(GetObjectRequest request, GetObjectResponceHandl
 
 ```
 
-####Head Object：
+#### Head Object：
 
 *查询是否已经存在指定Object*
 
@@ -1413,7 +1414,7 @@ public void headObject(HeadObjectRequest request,HeadObjectResponseHandler resul
 		);
 ```
 
-####Delete Object：
+#### Delete Object：
 
 *删除指定Object*
 
@@ -1489,7 +1490,7 @@ throws Ks3ClientException, Ks3ServiceException{}
 		);
 ```
 
-####Get Object ACL：
+#### Get Object ACL：
 
 *获得Object的acl*
 
@@ -1574,7 +1575,7 @@ public void getObjectACL(GetObjectACLRequest request, GetObjectACLResponseHandle
 
 ```
 
-####Put Object ACL:
+#### Put Object ACL:
 
 *上传object的acl，以CannedAccessControlList形式*
 
@@ -1690,7 +1691,7 @@ throws Ks3ClientException, Ks3ServiceException{}
 		);
 ```
 
-####List Objects：
+#### List Objects：
 
 *列举Bucket内的Object*
 
@@ -1850,7 +1851,7 @@ throws Ks3ClientException, Ks3ServiceException{}
 		);
 ````
 
-####Put Object：
+#### Put Object：
 
 *上传Object数据*
 
@@ -1960,7 +1961,7 @@ public Ks3HttpRequest PutObject(PutObjectRequest request, PutObjectResponseHandl
 
 ```
 
-####Copy Object：
+#### Copy Object：
 
 *复制Object*
 
@@ -2137,7 +2138,7 @@ public void copyObject(CopyObjectRequest request,CopyObjectResponseHandler resul
 		});
 ````
 
-####Initiate Multipart Upload：
+#### Initiate Multipart Upload：
 
 *调用这个接口会初始化一个分块上传，KS3 Server会返回一个upload id, upload id 用来标识属于当前object的具体的块，并且用来标识完成分块上传或者取消分块上传*
 
@@ -2223,7 +2224,7 @@ Ks3ServiceException;
 
 ```
 
-####Upload Part：
+#### Upload Part：
 
 *初始化分块上传后，上传分块接口。Part number 是标识每个分块的数字，介于0-10000之间。除了最后一块，每个块必须大于等于5MB，最后一块没有这个限制。*
 
@@ -2317,7 +2318,7 @@ public void uploadPart(UploadPartRequest request,UploadPartResponceHandler resul
 
 ```
 
-####List Parts:
+#### List Parts:
 
 *罗列出已经上传的块*
 
@@ -2478,7 +2479,7 @@ String uploadId,int maxParts, int partNumberMarker, ListPartsResponseHandler han
 
 
 
-####Abort Multipart Upload:
+#### Abort Multipart Upload:
 
 *取消分块上传。*
 
@@ -2557,7 +2558,7 @@ public void abortMultipartUpload(AbortMultipartUploadRequest request, AbortMulti
 		
 ```
 
-####Complete Multipart Upload:
+#### Complete Multipart Upload:
 
 *组装之前上传的块，然后完成分块上传。通过你提供的xml文件，进行分块组装。在xml文件中，块号必须使用升序排列。必须提供每个块的ETag值。*
 
@@ -2709,7 +2710,7 @@ public void completeMultipartUpload(CompleteMultipartUploadRequest request, Comp
 
 ```
 
-####Multipart Upload Example Code:
+#### Multipart Upload Example Code:
 
 *分片上传代码示例*
 
@@ -2835,7 +2836,7 @@ public void completeMultipartUpload(CompleteMultipartUploadRequest request, Comp
 
 
 
-####音视频使用示例：
+#### 音视频使用示例：
 
 ````
     /**
@@ -2905,7 +2906,7 @@ public void completeMultipartUpload(CompleteMultipartUploadRequest request, Comp
 
 
 
-####POST表单上传使用示例：
+#### POST表单上传使用示例：
 
     public void postObject() {
             final String srcObjectKey = "2015/01/demo/KS3SDKDemo.zip";
